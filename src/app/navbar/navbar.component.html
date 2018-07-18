@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+
+      <!-- Esta es la forma con href solo que se recarga la pagina al dar click a otra opcion -->
+      <!-- <a mat-list-item href="./news-page">News</a>
+      <a mat-list-item href="./todo-page">To Do</a>
+      <a mat-list-item href="./bitcoin-page">Bitcoin</a> -->
+
+      <!-- Con esta forma es mas limpio el routing -->
+      <a mat-list-item [routerLink]="['/news-page']" [routerLinkActive]="['active']">News</a> 
+      <a mat-list-item [routerLink]="['/todo-page']" [routerLinkActive]="['active']">TO DO</a> 
+      <a mat-list-item [routerLink]="['/bitcoin-page']" [routerLinkActive]="['active']">Bitcoin</a> 
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span >App-Angular</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+
+    <!-- Se agrega la etiqueta  <router-outlet></router-outlet>
+     para que pueda mostrar el contenido y ser el routing -->
+    <router-outlet></router-outlet>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
