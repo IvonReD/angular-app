@@ -10,7 +10,16 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 
 // Modulo donde se coloca los componente de material
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatInputModule } from '@angular/material';
+// tslint:disable-next-line:max-line-length
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatInputModule, MatCardModule, MatCheckboxModule } from '@angular/material';
+
+// Importar el modulo de Formularios (FormBuilder)
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+
+
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewspageComponent } from './newspage/newspage.component';
@@ -38,7 +47,11 @@ import { BitcoinpageComponent } from './bitcoinpage/bitcoinpage.component';
     MatIconModule,
     MatListModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
