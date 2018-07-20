@@ -9,39 +9,68 @@ import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@ang
   styleUrls: ['./todopage.component.css']
 })
 export class TodopageComponent implements OnInit {
-  taskForm: FormGroup;
+  nameForm: FormGroup;
   task: String = '';
   description: String = '';
   post: any;
- public arrayItems: Array<any>;
+  items: any[] = [];
+
 
   constructor(private fb: FormBuilder) {
-    this.taskForm = fb.group({
-      'task': [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
-      'description': [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
-    });
-    const arr = this.taskForm;
-    console.log(arr);
-    
   }
 
   ngOnInit() {
-  }
-  saveDataLocal() {
-   const pushItem = this.arrayItems.push(this.taskForm);
-   console.log(pushItem);
-   
-   const obje = localStorage.setItem('formObj', JSON.stringify(pushItem));
-   console.log(obje);
-   
-   this.drawItem();
-  }
- drawItem() {
-   const getObj = localStorage.getItem('formObj');
-   const itemObj = JSON.parse(getObj);
+    this.nameForm = this.fb.group({
+      task: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      // items: this.fb.array([this.saveDataLocal()])
+      items: this.fb.array([this.saveDataLocal()])
+  });
+  console.log(this.nameForm.value);
+}
+
+saveDataLocal() {
+  return this.fb.group({
+    name: '',
+    description: '',
+    itemname: ['']
+  });
+}
+
+addNewData() {
+  // const control = <FormArray>this.nameForm.controls['items'];
+  // control.push(this.saveDataLocal());
+  const itemsData = this.nameForm.get('items') as FormArray;
+  itemsData.push(this.saveDataLocal());
+}
+
+// saveDataLocal(): FormGroup {
+//    return this.fb.group({
+//      name: '',
+//      description: '',
+//    });
+//  }
+
+//  addItem(): void {
+//    this.items = this.nameForm.get('items') as FormArray;
+//    this.items.push(this.saveDataLocal());
+//  }
+
+// saveDataLocal() {
+//   const arrayForm = new FormArray();
+//   console.log(this.nameForm);
+//    const obje = JSON.stringify(this.nameForm.value);
+//    arrayForm.push('hola');
+//    console.log(obje);
+//    this.nameForm.reset();  //------- resert()--> metodo para limpiar los input al momento de enviar los datos
+//    this.drawItem();
+//   }
+//  drawItem() {
+//    const getObj = localStorage.getItem('formObj');
+//    const itemObj = JSON.parse(getObj);
     // console.log(itemObj);
-    this.task = itemObj.task;
-    this.description = itemObj.description;
- }
+    // this.task = itemObj.task;
+    // this.description = itemObj.description;
+//  }
 
 }

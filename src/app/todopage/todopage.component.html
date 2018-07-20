@@ -1,34 +1,38 @@
 
-<div>
-  <form class="example-form" [formGroup]="taskForm" (ngSubmit)="saveDataLocal(taskForm.value)">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="New Task" type="text" formControlName="task" >
-    </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Comment" formControlName="description"></textarea>
-    </mat-form-field>
-    <button mat-raised-button color="primary"  type="submit"   [disabled]="!taskForm.valid" >Aceptar</button>  
-    <!-- <input mat-raised-button color="primary" type="submit" class="button expanded" value="Aceptar" [disabled] = "!taskForm.valid"> -->
+ 
+  <form class="example-form" [formGroup]="nameForm" (ngSubmit)="saveDataLocal(nameForm.value)">
+      <!-- <form class="example-form" [formGroup]="nameForm" > -->
+
+      <!-- <div formArrayName="items" > -->
+        <!-- <div *ngFor="let item of nameForm let i=index" [formGroupName]="i"> -->
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="New Task" type="text" formControlName="task" >
+          </mat-form-field>
+        
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Comment" formControlName="description"></textarea>
+          </mat-form-field>
+          <!-- <button mat-raised-button color="primary"  type="submit"  [disabled] = "!nameForm.valid"  >Aceptar</button>   -->
+          <button mat-raised-button color="primary"  type="button" (click)="addNewData()">Agregar</button>  
+      
+          <!-- <input mat-raised-button color="primary" type="submit" class="button expanded" value="Aceptar" [disabled] = "!taskForm.valid"> -->
+
+        <!-- </div>
+  </div> -->
   </form>
-</div>
+
 
 <div>
   <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>
-        <p>{{task}}</p>
-      </mat-card-title>
-    </mat-card-header>
     <mat-card-content>
-      <!-- <p>{{description}}</p> -->
-      <p>{{description}}</p>
+      <p>Tarea:{{task}}</p>
+      <p>Description:{{description}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Eliminar</button>
-      <mat-checkbox>Check me!</mat-checkbox>
     </mat-card-actions>
+    <button mat-raised-butto color="primary">Eliminar</button>
+    <mat-checkbox >Check me!</mat-checkbox>
   </mat-card>
 </div>
 

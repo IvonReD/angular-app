@@ -16,7 +16,18 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 // Importar el modulo de Formularios (FormBuilder)
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+/* Importar el Observable esta es para version 6 de angular
+ (rxjs 6 alpha
+   import { Observable, Subject, ReplaySubject } from 'rxjs';
+   import { from, of, range } from 'rxjs/create';
+   import { map, filter, switchMap } from 'rxjs/operators';)
+para la 5(rxjs 5
+    import { Observable } from 'rxjs/Observable';
+    import 'rxjs/add/observable/of';
+    import 'rxjs/add/operator/map';)*/
 
+import { Observable } from 'rxjs';
+import { map, filter, switchMap } from 'rxjs/operators';)
 
 
 
