@@ -9,11 +9,12 @@ import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@ang
   styleUrls: ['./todopage.component.css']
 })
 export class TodopageComponent implements OnInit {
+  _fb: any;
   nameForm: FormGroup;
   task: String = '';
   description: String = '';
   post: any;
-  items: any[] = [];
+  arrayitems: any[] = [];
 
 
   constructor(private fb: FormBuilder) {
@@ -24,13 +25,13 @@ export class TodopageComponent implements OnInit {
       task: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       // items: this.fb.array([this.saveDataLocal()])
-      items: this.fb.array([this.saveDataLocal()])
+      arrayitems: this._fb.array([this.saveDataLocal()])
   });
   console.log(this.nameForm.value);
 }
 
 saveDataLocal() {
-  return this.fb.group({
+  return this._fb.group({
     name: '',
     description: '',
     itemname: ['']
@@ -38,11 +39,15 @@ saveDataLocal() {
 }
 
 addNewData() {
-  // const control = <FormArray>this.nameForm.controls['items'];
-  // control.push(this.saveDataLocal());
-  const itemsData = this.nameForm.get('items') as FormArray;
-  itemsData.push(this.saveDataLocal());
+  const control = <FormArray>this.nameForm.controls['items'];
+  control.push(this.saveDataLocal());
 }
+
+deleteRow(index: number){
+  const control = <FormArray>this.nameForm.controls['arrayitems'];
+  control.removeAt(index);
+}
+
 
 // saveDataLocal(): FormGroup {
 //    return this.fb.group({

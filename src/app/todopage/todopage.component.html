@@ -32,6 +32,8 @@
     <mat-card-actions>
     </mat-card-actions>
     <button mat-raised-butto color="primary">Eliminar</button>
+    <button *ngIf="nameForm.controls.arrayitems.controls.length > 1" (click)="deleteRow(i)" >Delete Button</button>
+
     <mat-checkbox >Check me!</mat-checkbox>
   </mat-card>
 </div>
