@@ -1,81 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
-
+import { Component, OnInit, Input } from '@angular/core';
+// import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { TodoService } from './services/todo.service';
 
 
 @Component({
   selector: 'app-todopage',
   templateUrl: './todopage.component.html',
-  styleUrls: ['./todopage.component.css']
+  styleUrls: ['./todopage.component.css'],
+  providers:   [TodoService]
 })
 export class TodopageComponent implements OnInit {
-  _fb: any;
-  nameForm: FormGroup;
-  task: String = '';
-  description: String = '';
-  post: any;
-  arrayitems: any[] = [];
+private todoText: string;
 
-
-  constructor(private fb: FormBuilder) {
-  }
-
-  ngOnInit() {
-    this.nameForm = this.fb.group({
-      task: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      // items: this.fb.array([this.saveDataLocal()])
-      arrayitems: this._fb.array([this.saveDataLocal()])
-  });
-  console.log(this.nameForm.value);
+constructor(private todoService: TodoService) {
+ this.todoText = '';
 }
 
-saveDataLocal() {
-  return this._fb.group({
-    name: '',
-    description: '',
-    itemname: ['']
-  });
+ngOnInit() {
 }
 
-addNewData() {
-  const control = <FormArray>this.nameForm.controls['items'];
-  control.push(this.saveDataLocal());
+private addTask(): void {
+  // console.log('todo: ', this.todoText);
+  this.todoService.addTask(this.todoText);
+  this.todoText = '';
 }
 
-deleteRow(index: number){
-  const control = <FormArray>this.nameForm.controls['arrayitems'];
-  control.removeAt(index);
-}
+  // private arrItem: any[] = [];
+  // task = new FormControl('');
 
+  // onSubmit() {
+  //   const saveItem = this.task.value;
+  //   console.log(saveItem);
+  //   this.arrItem.push(saveItem);
+  //   localStorage.setItem('items', JSON.stringify(this.arrItem));
+  // }
 
-// saveDataLocal(): FormGroup {
-//    return this.fb.group({
-//      name: '',
-//      description: '',
-//    });
-//  }
-
-//  addItem(): void {
-//    this.items = this.nameForm.get('items') as FormArray;
-//    this.items.push(this.saveDataLocal());
-//  }
-
-// saveDataLocal() {
-//   const arrayForm = new FormArray();
-//   console.log(this.nameForm);
-//    const obje = JSON.stringify(this.nameForm.value);
-//    arrayForm.push('hola');
-//    console.log(obje);
-//    this.nameForm.reset();  //------- resert()--> metodo para limpiar los input al momento de enviar los datos
-//    this.drawItem();
-//   }
-//  drawItem() {
-//    const getObj = localStorage.getItem('formObj');
-//    const itemObj = JSON.parse(getObj);
-    // console.log(itemObj);
-    // this.task = itemObj.task;
-    // this.description = itemObj.description;
-//  }
+  // getLocal() {
+  //   const getItem = JSON.parse(localStorage.getItem('items'));
+  //   console.log(getItem);
+  // }
 
 }

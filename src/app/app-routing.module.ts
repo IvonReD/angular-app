@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NewspageComponent } from './newspage/newspage.component';
 import { TodopageComponent } from './todopage/todopage.component';
+import { TodoTwoComponent } from './todo-two/todo-two.component';
 import { BitcoinpageComponent } from './bitcoinpage/bitcoinpage.component';
+
 
 
 const routes: Routes = [
@@ -15,6 +17,10 @@ const routes: Routes = [
   {
     path: 'todo-page',
     component: TodopageComponent
+  },
+  {
+    path: 'todo-two',
+    component: TodoTwoComponent
   },
   {
     path: 'bitcoin-page',

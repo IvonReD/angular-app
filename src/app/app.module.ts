@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Modulo donde se coloca los componente de material
 // tslint:disable-next-line:max-line-length
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatInputModule, MatCardModule, MatCheckboxModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatInputModule, MatCardModule, MatCheckboxModule} from '@angular/material';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 // Importar el modulo de Formularios (FormBuilder)
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,8 +27,8 @@ para la 5(rxjs 5
     import 'rxjs/add/observable/of';
     import 'rxjs/add/operator/map';)*/
 
-import { Observable } from 'rxjs';
-import { map, filter, switchMap } from 'rxjs/operators';)
+import { Observable, Subject, ReplaySubject } from 'rxjs';
+import { map, filter, switchMap } from 'rxjs/operators';
 
 
 
@@ -36,6 +37,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewspageComponent } from './newspage/newspage.component';
 import { TodopageComponent } from './todopage/todopage.component';
 import { BitcoinpageComponent } from './bitcoinpage/bitcoinpage.component';
+import { TodoTwoComponent } from './todo-two/todo-two.component';
+
+/*importar servicio de la seccion To DO */
+import { TodoService } from './todopage/services/todo.service';
+
+
 
 @NgModule({
   declarations: [
@@ -43,7 +50,8 @@ import { BitcoinpageComponent } from './bitcoinpage/bitcoinpage.component';
     NavbarComponent,
     NewspageComponent,
     TodopageComponent,
-    BitcoinpageComponent
+    BitcoinpageComponent,
+    TodoTwoComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +70,12 @@ import { BitcoinpageComponent } from './bitcoinpage/bitcoinpage.component';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    TodoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

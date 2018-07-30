@@ -1,0 +1,11 @@
+<form class="example-form" [formGroup]="task" (ngSubmit)="onSubmit()" #form>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Actividad" type="text" formControlName="activity" required>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+  <input matInput placeholder="Descripcion" type="text" formControlName="description">
+</mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!task.valid">Add</button>
+
+</form>

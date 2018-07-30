@@ -1,40 +1,38 @@
-
- 
-  <form class="example-form" [formGroup]="nameForm" (ngSubmit)="saveDataLocal(nameForm.value)">
-      <!-- <form class="example-form" [formGroup]="nameForm" > -->
-
-      <!-- <div formArrayName="items" > -->
-        <!-- <div *ngFor="let item of nameForm let i=index" [formGroupName]="i"> -->
-
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="New Task" type="text" formControlName="task" >
-          </mat-form-field>
-        
-          <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Comment" formControlName="description"></textarea>
-          </mat-form-field>
-          <!-- <button mat-raised-button color="primary"  type="submit"  [disabled] = "!nameForm.valid"  >Aceptar</button>   -->
-          <button mat-raised-button color="primary"  type="button" (click)="addNewData()">Agregar</button>  
-      
-          <!-- <input mat-raised-button color="primary" type="submit" class="button expanded" value="Aceptar" [disabled] = "!taskForm.valid"> -->
-
-        <!-- </div>
-  </div> -->
+ <!-- <section>
+  <form class="example-form">
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Actividad" type="text" [formControl]="task" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary"  type="submit" (click)="onSubmit()" >Add</button>
   </form>
+</section>
+
+<mat-selection-list>
+  <ul *ngFor="let item of arrItem; let i=index">
+    <li>{{item}}
+        <button mat-mini-fab color="accent">Eliminar</button>
+
+    </li>
+  </ul>
+</mat-selection-list> -->
+
+<div>
+    <input  type="text" [(ngModel)]="todoText" value={{todoText}}>
+    <button (click)="addTask()" >Add</button>
+
+</div>
+     
 
 
 <div>
-  <mat-card class="example-card">
-    <mat-card-content>
-      <p>Tarea:{{task}}</p>
-      <p>Description:{{description}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-    </mat-card-actions>
-    <button mat-raised-butto color="primary">Eliminar</button>
-    <button *ngIf="nameForm.controls.arrayitems.controls.length > 1" (click)="deleteRow(i)" >Delete Button</button>
-
-    <mat-checkbox >Check me!</mat-checkbox>
-  </mat-card>
+  <div *ngFor="let todo of todoService.getTodos()">
+      <div>
+          <!-- <button (click)="removeTodo()">remove</button> -->
+          <p>{{todo.text}}</p>
+          <button type="submit" (click)="removeTodo()">X</button>
+      </div>
+  </div>
 </div>
+
 
